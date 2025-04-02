@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .filter-input {
+    width: 200px;
+  }
+  
+  .filter-btn {
+    height: 56px;
+  }
+  

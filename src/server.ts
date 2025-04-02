@@ -15,18 +15,6 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
-/**
  * Serve static files from /browser
  */
 app.use(
@@ -43,15 +31,43 @@ app.use(
 app.use('/**', (req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => {
+      if (response) {
+        writeResponseToNodeResponse(response, res);
+      } else {
+        next(); // Continue to the next handler if response is null
+      }
+    })
     .catch(next);
 });
 
 /**
+ * Handle prerendering for dynamic routes with parameters.
+ */
+app.get('/mission/:id', (req, res) => {
+  const missionId = req.params.id;
+
+  // Define the parameters for prerendering
+  const params = {
+    id: missionId,  // Pass the dynamic parameter for prerendering
+  };
+
+  angularApp
+    .handle(req, { params })
+    .then((response) => {
+      if (response) {
+        writeResponseToNodeResponse(response, res);
+      } else {
+        res.status(500).send('Failed to prerender the page');
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+/**
  * Start the server if this module is the main entry point.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;

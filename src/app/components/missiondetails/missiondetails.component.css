@@ -1,0 +1,24 @@
+.details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+  }
+  
+  .patch-img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 24px;
+  }
+  
+  .details-card {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .links {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  

@@ -1,0 +1,18 @@
+<div class="details-container" *ngIf="launch">
+    <img class="patch-img" [src]="launch.links.mission_patch_small" alt="{{ launch.mission_name }}" />
+  
+    <mat-card class="details-card">
+      <mat-card-title>{{ launch.mission_name }}</mat-card-title>
+      <mat-card-subtitle>{{ launch.launch_year }}</mat-card-subtitle>
+      <mat-card-content>
+        <p><strong>Details:</strong> {{ launch.details || 'No details available' }}</p>
+        <p><strong>Rocket:</strong> {{ launch.rocket.rocket_name }} ({{ launch.rocket.rocket_type }})</p>
+        <div class="links">
+          <a mat-button color="primary" [href]="launch.links.article_link" target="_blank">Article</a>
+          <a mat-button color="primary" [href]="launch.links.wikipedia" target="_blank">Wikipedia</a>
+          <a mat-button color="primary" [href]="launch.links.video_link" target="_blank">Video</a>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

@@ -1,0 +1,23 @@
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin: 24px;
+  }
+  
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 0 24px 40px;
+  }
+  
+  .mission-card {
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .mission-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
